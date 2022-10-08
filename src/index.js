@@ -26,6 +26,28 @@ const UserAPI = require('./API/UserAPI');
 const ProductAPI = require('./API/ProductAPI');
 const CartAPI = require('./API/CartAPI');
 const port = process.env.PORT || 3000;
+
+// const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+// function generateString(length) {
+//     let result = ' ';
+//     const charactersLength = characters.length;
+//     for ( let i = 0; i < length; i++ ) {
+//         result += characters.charAt(Math.floor(Math.random() * charactersLength));
+//     }
+
+//     return result;
+// }
+
+Users.findOne({level: 'admin'})
+    .then(user => {
+        user.isLogin = false;
+        user.save()
+    })
+
+
+// console.log(generateString(10));
+
 database.connect();
 //  config
 app.set('view engine', 'hbs');
@@ -49,6 +71,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 
 // config end
+
+app.post('/match-discount', async (req, res, next) => {
+    const code = req.body.code;
+
+
+    let discount = await Discount.findOne({code: code})
+        .then(d => {
+            return {
+                amount: d.amount,
+                value: d.value
+            }
+        })
+
+    if(discount.amount == 0) {
+        return res.send({err: 'Mã khuyến mãi đã hết hạn'});
+    }
+    
+    return res.send({value: discount.value});
+})
 
 app.get('/home', async(req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -109,10 +150,16 @@ app.get('/home', async(req, res) => {
             })
         })
 });
+
+
+
 app.use('/users', UsersRouter);
 app.use('/users', CartRouter);
 app.use('/product', ProductsRouter);
 app.use('/admin', AdminRouter);
+
+
+
 app.get('/', (req, res) => {
     return res.redirect('/home');
 })

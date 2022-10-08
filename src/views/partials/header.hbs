@@ -43,8 +43,11 @@
                     </div>
                 </form>
                 <span class="dark-mode" id="dark-mode"
-                    style="width: 100px; height: 50px; line-height: 80px; text-align: center; font-size:25px;"><i
-                        class="fa fa-moon-o" aria-hidden="true"></i></span>
+                    style="width: 50px; height: 50px; line-height: 80px; text-align: center; font-size:25px;"><i
+                        class="fa fa-moon-o btn-change-dark" aria-hidden="true"></i></span>
+                <span class="dark-mode" id="dark-mode"
+                    style="width: 50px; height: 50px; line-height: 80px; text-align: center; font-size:25px;"><i
+                        class="fa fa-sun-o btn-change-light" aria-hidden="true"></i></span>
             </ul>
             <div><a href="/users/cart"><i class="bi bi-cart3"></i></a></div>
             {{#if username}}
@@ -80,10 +83,5 @@
 </div>
 {{/if}}
 <script>
-    $(document).ready(function () {
-        $('#dark-mode').click(function () {
-            $('body').toggleClass('dark-mode-main');
-            $('.header-main').toggleClass('dark-mode-main');
-        })
-    })
+    
 </script>

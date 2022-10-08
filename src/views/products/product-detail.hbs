@@ -113,4 +113,24 @@
             $('.total_price').html(total)
         });
     })
+
+
+    $('.btn-discount').click(function(e) {
+        e.preventDefault()
+        let code = $('#code').val();
+        $.ajax({
+            url:  'http://localhost:3000/match-discount',
+            method: 'POST',
+            data: {
+                code
+            },
+            success: (result) => {
+                
+                alert('Áp mã khuyến mãi thành công');
+                let old_price = $('.total_price').text();
+                $('.total_price').text(parseInt(old_price) - parseInt(old_price) * result.value);
+            }
+
+        })
+    })
 </script>
