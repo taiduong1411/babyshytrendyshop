@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 // const e = require("express");
 
 $('.btn-change-dark').click(function() {
     localStorage.setItem('theme', 'dark-mode-main');
 
+=======
+
+
+$('.btn-change-dark').click(function() {
+    localStorage.setItem('theme', 'dark-mode-main');
+    
+>>>>>>> fcbca2c7ce6b410a39924b9a0047bac8fb6df9d9
     let theme = localStorage.getItem('theme');
     $('body').addClass(theme);
     $('.header-main').addClass(theme);
@@ -13,7 +21,11 @@ $('.btn-change-light').click(function() {
     $('body').removeClass(theme);
     $('.header-main').removeClass(theme);
     localStorage.setItem('theme', 'light');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> fcbca2c7ce6b410a39924b9a0047bac8fb6df9d9
 })
 
 $(document).ready(function() {
@@ -21,6 +33,7 @@ $(document).ready(function() {
     // alert(theme)
     $('body').addClass(theme);
     $('.header-main').addClass(theme);
+<<<<<<< HEAD
 })
 $('#addComment').click(function(e) {
     e.preventDefault();
@@ -68,3 +81,6 @@ $('#addComment').keydown(function(e) {
         $(this).trigger("enterKey");
     }
 });
+=======
+})  
+>>>>>>> fcbca2c7ce6b410a39924b9a0047bac8fb6df9d9
